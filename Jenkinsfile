@@ -17,9 +17,9 @@ pipeline {
             steps {
                                    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'Docker_pass', usernameVariable: 'Docker_username')]) {
 
-                git 'https://github.com/AbdelrahmanNabill/node-js-app'
+                git 'https://github.com/AbdelrahmanNabill/jenkins_nodejs'
                 sh "docker login -u ${Docker_username} -p ${Docker_pass}"
-                sh "docker run -p 3000:3000 -d abdelrahmannabil95/nodejs-project --env-file env.list"
+                sh "docker run --env-file env.list -p 3000:3000 -d abdelrahmannabil95/nodejs-project"
                 
             }
             }
